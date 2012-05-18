@@ -11,7 +11,7 @@ class ActiveUsers
     def add(client_id, user)
       if not find_by_user_id(user.id)
         @@users[user.id] = {:user => user, :client_ids => [client_id]}
-        publish_message "connect", user
+        #publish_message "connect", user
       else
         @@users[user.id][:client_ids].push client_id
       end
@@ -23,7 +23,7 @@ class ActiveUsers
         @@users[user_id][:client_ids].delete client_id
         if @@users[user_id][:client_ids].empty?
           deleted_user_info = @@users.delete user_id
-          publish_message "disconnect", deleted_user_info[:user]
+          #publish_message "disconnect", deleted_user_info[:user]
         end
       end
     end
